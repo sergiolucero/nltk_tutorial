@@ -30,7 +30,6 @@ featuresets = [(find_features(rev), category) for (rev, category) in documents]
 training_set = featuresets[:1900]
 testing_set = featuresets[1900:]
 
-classifier = nltk.NaiveBayesClassifier.train(training_set)
     
 classifiers = {'Multinomial':   MultinomialNB,
                 'Bernoulli':    BernoulliNB,
@@ -40,16 +39,19 @@ classifiers = {'Multinomial':   MultinomialNB,
                 'LinearSVC':    LinearSVC,
                 'NuSVC':        NuSVC
                 }
-                
-print("Original Naive Bayes Algo accuracy percent:", 
-      (nltk.classify.accuracy(classifier, testing_set))*100)
-classifier.show_most_informative_features(15)
 
+t0 = time.clock()                
+NBclassifier = nltk.NaiveBayesClassifier.train(training_set)
+print("Original Naive Bayes Algo accuracy percent:", 
+      (nltk.classify.accuracy(NBclassifier, testing_set))*100)
+NBclassifier.show_most_informative_features(15)
+tf = time.clock(); print 'Naive dt:', tf-t0
+
+t0 = time.clock()                
 for classifier_name, classifier in classifiers.iteritems():
     this_classifier = SklearnClassifier(classifier())
     this_classifier.train(training_set)
     print("%s_classifier accuracy percent:" %(classifier_name), 
           (nltk.classify.accuracy(this_classifier, testing_set))*100)
-
-
+tf = time.clock(); print '%d classifiers in dt=%d:' %(len(classifiers), tf-t0)
                 
