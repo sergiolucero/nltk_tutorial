@@ -1,13 +1,14 @@
-# with help from the tutorial
+# code from the tutorial
 # Natural Language Processing With Python and NLTK
-# https://www.youtube.com/watch?v=FLZvOKSCkxY
+# First video: https://www.youtube.com/watch?v=FLZvOKSCkxY
+# Playlist link: http://tinyurl.com/nltk-tutorial
 
-import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
-# nltk.download()
 
-injeet_text = "any ideas what you'd like to cook for Sunday? I am sending out \
+some_text = "any ideas what you'd like to cook for Sunday? I am sending out \
                individual promos and would like to present what you're going to make"
+
+print(sent_tokenize(some_text))
                
-for word in word_tokenize(injeet_text):
+for word in word_tokenize(some_text):
     print word
