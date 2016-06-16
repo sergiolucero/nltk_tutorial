@@ -2,6 +2,7 @@
 # https://www.youtube.com/watch?v=nla4C-VYNEU
 import nltk
 import random
+import time
 from nltk.corpus import movie_reviews
 
 from nltk.classify.scikitlearn import SklearnClassifier
